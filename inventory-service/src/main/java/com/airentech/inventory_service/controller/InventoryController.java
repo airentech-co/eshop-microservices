@@ -2,7 +2,6 @@ package com.airentech.inventory_service.controller;
 
 import com.airentech.inventory_service.dto.InventoryResponse;
 import com.airentech.inventory_service.service.InventoryService;
-import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
