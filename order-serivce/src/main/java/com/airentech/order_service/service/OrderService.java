@@ -3,11 +3,13 @@ package com.airentech.order_service.service;
 import com.airentech.order_service.dto.InventoryResponse;
 import com.airentech.order_service.dto.OrderLineItemsDto;
 import com.airentech.order_service.dto.OrderRequest;
+import com.airentech.order_service.event.OrderPlaceEvent;
 import com.airentech.order_service.model.Order;
 import com.airentech.order_service.model.OrderLineItems;
 import com.airentech.order_service.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -24,6 +26,8 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final WebClient.Builder webClientBuilder;
+
+    private final KafkaTemplate<String, OrderPlaceEvent> kafkaTemplate;
 
     public void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
@@ -48,7 +52,13 @@ public class OrderService {
 
         boolean allProductsInStock = Arrays.stream(inventoryResponseArray).allMatch(InventoryResponse::isInStock);
 
-        if (allProductsInStock) orderRepository.save(order);
+        if (allProductsInStock) {
+
+            orderRepository.save(order);
+
+            // producing an event into kafka broker
+            kafkaTemplate.send("notificationTopic", new OrderPlaceEvent(order.getOrderNumber()));
+        }
         else throw new IllegalArgumentException("Product is not in stock, please try again.");
     }
 

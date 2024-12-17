@@ -1,4 +1,4 @@
-package com.airentech.inventory_service.dto;
+package com.airentech.notification_service.inventory_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

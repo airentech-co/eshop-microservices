@@ -1,7 +1,7 @@
-package com.airentech.product_service;
+package com.airentech.notification_service.product_service;
 
-import com.airentech.product_service.dto.ProductRequest;
-import com.airentech.product_service.repository.ProductRepository;
+import com.airentech.notification_service.product_service.dto.ProductRequest;
+import com.airentech.notification_service.product_service.repository.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

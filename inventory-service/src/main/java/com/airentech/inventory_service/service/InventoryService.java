@@ -1,7 +1,7 @@
-package com.airentech.inventory_service.service;
+package com.airentech.notification_service.inventory_service.service;
 
-import com.airentech.inventory_service.dto.InventoryResponse;
-import com.airentech.inventory_service.repository.InventoryRepository;
+import com.airentech.notification_service.inventory_service.dto.InventoryResponse;
+import com.airentech.notification_service.inventory_service.repository.InventoryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
