@@ -1,4 +1,4 @@
-package com.airentech.inventory_service.model;
+package com.airentech.notification_service.inventory_service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
